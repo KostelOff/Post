@@ -38,7 +38,7 @@ class WallServiceTest {
 
         val result = post.id
 
-        val expected = 0
+        val expected = 1
 
         assertEquals(result, expected)
     }
