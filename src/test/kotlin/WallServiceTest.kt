@@ -9,29 +9,35 @@ class WallServiceTest {
 
         val post = WallService.addPosts(
             Post(
-                id = 1,
-                ownerId = 4,
-                fromId = 1,
+                id = 0,
+                ownerId = null,
+                fromId = null,
                 createdBy = 1,
                 date = 10052022,
                 text = "Text",
                 replyOwnerId = 1,
                 replyPostId = 1,
                 friendsOnly = true,
-                comments = "CommentsObject",
-                copyright = "CopyrightObject",
-                likes = "LikesObject",
-                reposts = "RepostsObject",
-                views = "ViewsObject",
-                postType = "Post",
+                comments = Comments(
+                    1, true, true, true, true
+                ),
+                copyright = Copyright(1, "copyright", "copyright"),
+                likes = Likes(1, true, true, true),
+                reposts = Reposts(1, true),
+                views = Views(1),
+                postType = "postType",
+                postSource = PostSource(),
+                attachments = emptyArray(),
+                geo = Geo("Geo", "Navi", Geo.Place(1)),
                 signerId = 1,
+                copyHistory = "copyHistory",
                 canPin = true,
                 canDelete = true,
                 canEdit = true,
                 isPinned = true,
                 markedAsAds = true,
                 isFavorite = true,
-                donut = "DonutObject",
+                donut = Donut(true, 1, "donut", true, "don", "all", 1),
                 postponedId = 1
             )
         )
@@ -49,28 +55,34 @@ class WallServiceTest {
         WallService.addPosts(
             Post(
                 id = 1,
-                ownerId = 1,
-                fromId = 1,
+                ownerId = null,
+                fromId = null,
                 createdBy = 1,
                 date = 10052022,
                 text = "Text",
                 replyOwnerId = 1,
                 replyPostId = 1,
                 friendsOnly = true,
-                comments = "CommentsObject",
-                copyright = "CopyrightObject",
-                likes = "LikesObject",
-                reposts = "RepostsObject",
-                views = "ViewsObject",
-                postType = "Post",
+                comments = Comments(
+                    1, true, true, true, true
+                ),
+                copyright = Copyright(1, "copyright", "copyright"),
+                likes = Likes(1, true, true, true),
+                reposts = Reposts(1, true),
+                views = Views(1),
+                postType = "postType",
+                postSource = PostSource(),
+                attachments = emptyArray(),
+                geo = Geo("Geo", "Navi", Geo.Place(1)),
                 signerId = 1,
+                copyHistory = "copyHistory",
                 canPin = true,
                 canDelete = true,
                 canEdit = true,
                 isPinned = true,
                 markedAsAds = true,
                 isFavorite = true,
-                donut = "DonutObject",
+                donut = Donut(true, 1, "donut", true, "don", "all", 1),
                 postponedId = 1
             )
         )
@@ -78,28 +90,34 @@ class WallServiceTest {
         WallService.addPosts(
             Post(
                 id = 2,
-                ownerId = 1,
-                fromId = 1,
+                ownerId = null,
+                fromId = null,
                 createdBy = 1,
                 date = 10052022,
                 text = "Text",
                 replyOwnerId = 1,
                 replyPostId = 1,
                 friendsOnly = true,
-                comments = "CommentsObject",
-                copyright = "CopyrightObject",
-                likes = "LikesObject",
-                reposts = "RepostsObject",
-                views = "ViewsObject",
-                postType = "Post",
+                comments = Comments(
+                    1, true, true, true, true
+                ),
+                copyright = Copyright(1, "copyright", "copyright"),
+                likes = Likes(1, true, true, true),
+                reposts = Reposts(1, true),
+                views = Views(1),
+                postType = "postType",
+                postSource = PostSource(),
+                attachments = emptyArray(),
+                geo = Geo("Geo", "Navi", Geo.Place(1)),
                 signerId = 1,
+                copyHistory = "copyHistory",
                 canPin = true,
                 canDelete = true,
                 canEdit = true,
                 isPinned = true,
                 markedAsAds = true,
                 isFavorite = true,
-                donut = "DonutObject",
+                donut = Donut(true, 1, "donut", true, "don", "all", 1),
                 postponedId = 1
             )
         )
@@ -107,65 +125,75 @@ class WallServiceTest {
         WallService.addPosts(
             Post(
                 id = 3,
-                ownerId = 1,
-                fromId = 1,
+                ownerId = null,
+                fromId = null,
                 createdBy = 1,
                 date = 10052022,
                 text = "Text",
                 replyOwnerId = 1,
                 replyPostId = 1,
                 friendsOnly = true,
-                comments = "CommentsObject",
-                copyright = "CopyrightObject",
-                likes = "LikesObject",
-                reposts = "RepostsObject",
-                views = "ViewsObject",
-                postType = "Post",
+                comments = Comments(
+                    1, true, true, true, true
+                ),
+                copyright = Copyright(1, "copyright", "copyright"),
+                likes = Likes(1, true, true, true),
+                reposts = Reposts(1, true),
+                views = Views(1),
+                postType = "postType",
+                postSource = PostSource(),
+                attachments = emptyArray(),
+                geo = Geo("Geo", "Navi", Geo.Place(1)),
                 signerId = 1,
+                copyHistory = "copyHistory",
                 canPin = true,
                 canDelete = true,
                 canEdit = true,
                 isPinned = true,
                 markedAsAds = true,
                 isFavorite = true,
-                donut = "DonutObject",
+                donut = Donut(true, 1, "donut", true, "don", "all", 1),
                 postponedId = 1
             )
         )
 
         val updatePost = Post(
             id = 6,
-            ownerId = 1,
-            fromId = 1,
+            ownerId = null,
+            fromId = null,
             createdBy = 1,
             date = 10052022,
             text = "Text",
             replyOwnerId = 1,
             replyPostId = 1,
             friendsOnly = true,
-            comments = "CommentsObject",
-            copyright = "CopyrightObject",
-            likes = "LikesObject",
-            reposts = "RepostsObject",
-            views = "ViewsObject",
-            postType = "Post",
+            comments = Comments(
+                1, true, true, true, true
+            ),
+            copyright = Copyright(1, "copyright", "copyright"),
+            likes = Likes(1, true, true, true),
+            reposts = Reposts(1, true),
+            views = Views(1),
+            postType = "postType",
+            postSource = PostSource(),
+            attachments = emptyArray(),
+            geo = Geo("Geo", "Navi", Geo.Place(1)),
             signerId = 1,
+            copyHistory = "copyHistory",
             canPin = true,
             canDelete = true,
             canEdit = true,
             isPinned = true,
             markedAsAds = true,
             isFavorite = true,
-            donut = "DonutObject",
+            donut = Donut(true, 1, "donut", true, "don", "all", 1),
             postponedId = 1
         )
 
         val result = WallService.update(updatePost)
 
         assertFalse(result)
-
     }
-
 
     @Test
     fun updateTrue() {
@@ -173,28 +201,34 @@ class WallServiceTest {
         WallService.addPosts(
             Post(
                 id = 3,
-                ownerId = 15,
-                fromId = 15,
-                createdBy = 15,
-                date = 31032022,
-                text = "postText",
-                replyOwnerId = 16,
-                replyPostId = 13,
+                ownerId = null,
+                fromId = null,
+                createdBy = 1,
+                date = 10052022,
+                text = "Text",
+                replyOwnerId = 1,
+                replyPostId = 1,
                 friendsOnly = true,
-                comments = "CommentsObject",
-                copyright = "CopyrightObject",
-                likes = "LikesObject",
-                reposts = "RepostsObject",
-                views = "ViewsObject",
-                postType = "Post",
-                signerId = 15,
+                comments = Comments(
+                    1, true, true, true, true
+                ),
+                copyright = Copyright(1, "copyright", "copyright"),
+                likes = Likes(1, true, true, true),
+                reposts = Reposts(1, true),
+                views = Views(1),
+                postType = "postType",
+                postSource = PostSource(),
+                attachments = emptyArray(),
+                geo = Geo("Geo", "Navi", Geo.Place(1)),
+                signerId = 1,
+                copyHistory = "copyHistory",
                 canPin = true,
                 canDelete = true,
                 canEdit = true,
                 isPinned = true,
                 markedAsAds = true,
                 isFavorite = true,
-                donut = "DonutObject",
+                donut = Donut(true, 1, "donut", true, "don", "all", 1),
                 postponedId = 1
             )
         )
@@ -203,28 +237,34 @@ class WallServiceTest {
         WallService.addPosts(
             Post(
                 id = 5,
-                ownerId = 15,
-                fromId = 15,
-                createdBy = 15,
-                date = 31032022,
-                text = "postText",
-                replyOwnerId = 16,
-                replyPostId = 13,
+                ownerId = null,
+                fromId = null,
+                createdBy = 1,
+                date = 10052022,
+                text = "Text",
+                replyOwnerId = 1,
+                replyPostId = 1,
                 friendsOnly = true,
-                comments = "CommentsObject",
-                copyright = "CopyrightObject",
-                likes = "LikesObject",
-                reposts = "RepostsObject",
-                views = "ViewsObject",
-                postType = "Post",
-                signerId = 15,
+                comments = Comments(
+                    1, true, true, true, true
+                ),
+                copyright = Copyright(1, "copyright", "copyright"),
+                likes = Likes(1, true, true, true),
+                reposts = Reposts(1, true),
+                views = Views(1),
+                postType = "postType",
+                postSource = PostSource(),
+                attachments = emptyArray(),
+                geo = Geo("Geo", "Navi", Geo.Place(1)),
+                signerId = 1,
+                copyHistory = "copyHistory",
                 canPin = true,
                 canDelete = true,
                 canEdit = true,
                 isPinned = true,
                 markedAsAds = true,
                 isFavorite = true,
-                donut = "DonutObject",
+                donut = Donut(true, 1, "donut", true, "don", "all", 1),
                 postponedId = 1
             )
         )
@@ -232,28 +272,34 @@ class WallServiceTest {
         WallService.addPosts(
             Post(
                 id = 2,
-                ownerId = 15,
-                fromId = 15,
-                createdBy = 15,
-                date = 31032022,
-                text = "postText",
-                replyOwnerId = 16,
-                replyPostId = 13,
+                ownerId = null,
+                fromId = null,
+                createdBy = 1,
+                date = 10052022,
+                text = "Text",
+                replyOwnerId = 1,
+                replyPostId = 1,
                 friendsOnly = true,
-                comments = "CommentsObject",
-                copyright = "CopyrightObject",
-                likes = "LikesObject",
-                reposts = "RepostsObject",
-                views = "ViewsObject",
-                postType = "Post",
-                signerId = 15,
+                comments = Comments(
+                    1, true, true, true, true
+                ),
+                copyright = Copyright(1, "copyright", "copyright"),
+                likes = Likes(1, true, true, true),
+                reposts = Reposts(1, true),
+                views = Views(1),
+                postType = "postType",
+                postSource = PostSource(),
+                attachments = emptyArray(),
+                geo = Geo("Geo", "Navi", Geo.Place(1)),
+                signerId = 1,
+                copyHistory = "copyHistory",
                 canPin = true,
                 canDelete = true,
                 canEdit = true,
                 isPinned = true,
                 markedAsAds = true,
                 isFavorite = true,
-                donut = "DonutObject",
+                donut = Donut(true, 1, "donut", true, "don", "all", 1),
                 postponedId = 1
             )
         )
@@ -261,28 +307,34 @@ class WallServiceTest {
 
         val updatePost = Post(
             id = 2,
-            ownerId = 15,
-            fromId = 15,
-            createdBy = 15,
-            date = 31032022,
-            text = "postChangingText",
-            replyOwnerId = 16,
-            replyPostId = 13,
+            ownerId = null,
+            fromId = null,
+            createdBy = 1,
+            date = 10052022,
+            text = "Text",
+            replyOwnerId = 1,
+            replyPostId = 1,
             friendsOnly = true,
-            comments = "CommentsObject",
-            copyright = "CopyrightObject",
-            likes = "LikesObject",
-            reposts = "RepostsObject",
-            views = "ViewsObject",
-            postType = "Post",
-            signerId = 15,
-            canPin = false,
+            comments = Comments(
+                1, true, true, true, true
+            ),
+            copyright = Copyright(1, "copyright", "copyright"),
+            likes = Likes(1, true, true, true),
+            reposts = Reposts(1, true),
+            views = Views(1),
+            postType = "postType",
+            postSource = PostSource(),
+            attachments = emptyArray(),
+            geo = Geo("Geo", "Navi", Geo.Place(1)),
+            signerId = 1,
+            copyHistory = "copyHistory",
+            canPin = true,
             canDelete = true,
             canEdit = true,
             isPinned = true,
             markedAsAds = true,
-            isFavorite = false,
-            donut = "DonutObject",
+            isFavorite = true,
+            donut = Donut(true, 1, "donut", true, "don", "all", 1),
             postponedId = 1
         )
 
@@ -290,4 +342,53 @@ class WallServiceTest {
 
         assertTrue(result)
     }
+
+    @Test
+    fun nullProp() {
+
+        val nullProp = WallService.nullProp(
+            Post(
+                id = 1,
+                ownerId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 10052022,
+                text = "Text",
+                replyOwnerId = 1,
+                replyPostId = 1,
+                friendsOnly = true,
+                comments = Comments(
+                    1, true, true, true, true
+                ),
+                copyright = Copyright(1, "copyright", "copyright"),
+                likes = Likes(1, true, true, true),
+                reposts = Reposts(1, true),
+                views = Views(1),
+                postType = "postType",
+                postSource = PostSource(),
+                attachments = emptyArray(),
+                geo = Geo("Geo", "Navi", Geo.Place(1)),
+                signerId = 1,
+                copyHistory = "copyHistory",
+                canPin = true,
+                canDelete = true,
+                canEdit = true,
+                isPinned = true,
+                markedAsAds = true,
+                isFavorite = true,
+                donut = Donut(true, 1, "donut", true, "don", "all", 1),
+                postponedId = 1
+            )
+        )
+
+        val result = nullProp.ownerId
+        val result2 = nullProp.fromId
+
+        val expected = 1
+
+        assertEquals(result, expected)
+        assertEquals(result2, expected)
+    }
 }
+
+
