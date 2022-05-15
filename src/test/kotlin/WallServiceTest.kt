@@ -287,7 +287,6 @@ class WallServiceTest {
             )
         )
 
-
         val updatePost = Post(
             id = 2,
             ownerId = null,
@@ -372,7 +371,7 @@ class WallServiceTest {
     @Test(expected = PostNotFoundException::class)
     fun shouldThrow() {
 
-       val x = WallService.addPosts(
+        WallService.addPosts(
             Post(
                 1,
                 null,
@@ -404,26 +403,26 @@ class WallServiceTest {
             )
         )
 
-        val y = WallService.createComments(
+        WallService.createComments(
             Comments(
-                0,
-                2,
-                3,
-                "message",
-                3,
-                emptyArray(),
-                4,
-                "guid",
+                ownerId = 1,
+                postId = 2,
+                fromGroup = 3,
+                message = "message",
+                replyToComment = 3,
+                attachment = emptyArray(),
+                stickerId = 4,
+                guid = "guid",
             )
         )
     }
 
-    @Test
-    fun createComments() {
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrow2() {
 
-        val x = WallService.addPosts(
+        WallService.addPosts(
             Post(
-                0,
+                1,
                 null,
                 null,
                 1,
@@ -453,21 +452,19 @@ class WallServiceTest {
             )
         )
 
-        val y = WallService.createComments(
+        WallService.createComments(
             Comments(
-                1,
-                1,
-                3,
-                "message",
-                3,
-                emptyArray(),
-                4,
-                "guid",
+                ownerId = 123,
+                postId = 2,
+                fromGroup = 3,
+                message = "message",
+                replyToComment = 3,
+                attachment = emptyArray(),
+                stickerId = 4,
+                guid = "guid",
             )
         )
-
-        val result = x.id
-        val expected = 1
-        assertEquals(expected, result)
     }
 }
+
+

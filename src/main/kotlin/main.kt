@@ -93,11 +93,11 @@ object WallService {
     }
 
     fun createComments(comment: Comments) {
-        for (post in allPosts)
+        for (post in allPosts) {
             if (post.id == comment.postId)
                 commentsArray += comment
-            else
-                throw PostNotFoundException("Пост ${comment.postId} не найден")
+        }
+        throw PostNotFoundException("Пост ${comment.postId} не найден")
     }
 }
 
