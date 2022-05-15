@@ -1,11 +1,11 @@
-class PostNotFoundException(message: String) : RuntimeException(message)
+class PostNotFoundException(message: String) : Exception(message)
 
 fun main() {
 
 }
 
 data class Post(
-    val id: Int = 0,
+    val id: Int = 2,
     val ownerId: Int? = null,
     val fromId: Int? = null,
     val createdBy: Int,
@@ -92,19 +92,18 @@ object WallService {
         return post
     }
 
-    fun createComments(comment: Comments): Comments {
-        allPosts.forEachIndexed { index, name ->
-            if (allPosts[index].id == comment.postId)
+    fun createComments(comment: Comments) {
+        for (post in allPosts)
+            if (post.id == comment.postId)
                 commentsArray += comment
-            return commentsArray.last()
-        }
-        throw PostNotFoundException("Пост ${comment.postId} не найден")
+            else
+                throw PostNotFoundException("Пост ${comment.postId} не найден")
     }
 }
 
 class Comments(
     val ownerId: Int = 1,
-    val postId: Int = 1,
+    val postId: Int = 2,
     val fromGroup: Int = 3,
     val message: String = "message",
     val replyToComment: Int = 3,

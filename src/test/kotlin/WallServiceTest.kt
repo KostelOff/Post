@@ -9,7 +9,7 @@ class WallServiceTest {
 
         val post = WallService.addPosts(
             Post(
-                id = 0,
+                id = 1,
                 ownerId = null,
                 fromId = null,
                 createdBy = 1,
@@ -41,10 +41,9 @@ class WallServiceTest {
         )
 
         val result = post.id
-
         val expected = 1
 
-        assertEquals(result, expected)
+        assertEquals(expected, result)
     }
 
     @Test
@@ -373,19 +372,102 @@ class WallServiceTest {
     @Test(expected = PostNotFoundException::class)
     fun shouldThrow() {
 
-        val createComments = WallService.createComments(
-            Comments(
-                postId = 0,
-                fromGroup = 3,
-                message = "message",
-                replyToComment = 3,
-                stickerId = 4,
-                guid = "guid"
+       val x = WallService.addPosts(
+            Post(
+                1,
+                null,
+                null,
+                1,
+                10052022,
+                "Text", 1,
+                1,
+                true,
+                Comments(),
+                Copyright(),
+                Likes(),
+                Reposts(),
+                Views(),
+                "postType",
+                PostSource(),
+                emptyArray(),
+                Geo(),
+                1,
+                "copyHistory",
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                Donut(true, 1, "donut", true, "don", "all", 1),
+                1
             )
         )
 
-        val result = createComments.postId
+        val y = WallService.createComments(
+            Comments(
+                0,
+                2,
+                3,
+                "message",
+                3,
+                emptyArray(),
+                4,
+                "guid",
+            )
+        )
+    }
+
+    @Test
+    fun createComments() {
+
+        val x = WallService.addPosts(
+            Post(
+                0,
+                null,
+                null,
+                1,
+                10052022,
+                "Text", 1,
+                1,
+                true,
+                Comments(),
+                Copyright(),
+                Likes(),
+                Reposts(),
+                Views(),
+                "postType",
+                PostSource(),
+                emptyArray(),
+                Geo(),
+                1,
+                "copyHistory",
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                Donut(true, 1, "donut", true, "don", "all", 1),
+                1
+            )
+        )
+
+        val y = WallService.createComments(
+            Comments(
+                1,
+                1,
+                3,
+                "message",
+                3,
+                emptyArray(),
+                4,
+                "guid",
+            )
+        )
+
+        val result = x.id
         val expected = 1
-        assertEquals(result, expected)
+        assertEquals(expected, result)
     }
 }
