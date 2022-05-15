@@ -1,7 +1,8 @@
-fun main() {
-    
-}
+class PostNotFoundException(message: String) : RuntimeException(message)
 
+fun main() {
+
+}
 
 data class Post(
     val id: Int = 0,
@@ -13,15 +14,15 @@ data class Post(
     val replyOwnerId: Int,
     val replyPostId: Int,
     val friendsOnly: Boolean,
-    val comments: Comments = Comments(1, true, true, true, true),
-    val copyright: Copyright = Copyright(1, "copyright", "copyright"),
-    val likes: Likes = Likes(1, true, true, true),
-    val reposts: Reposts = Reposts(1, true),
-    val views: Views = Views(1),
+    val comments: Comments = Comments(),
+    val copyright: Copyright = Copyright(),
+    val likes: Likes = Likes(),
+    val reposts: Reposts = Reposts(),
+    val views: Views = Views(),
     val postType: String,
     val postSource: PostSource = PostSource(),
     var attachments: Array<Attachments> = emptyArray(),
-    val geo: Geo = Geo("Geo", "Navi", Geo.Place(1)),
+    val geo: Geo = Geo(),
     val signerId: Int,
     val copyHistory: String,
     val canPin: Boolean,
@@ -30,13 +31,15 @@ data class Post(
     val isPinned: Boolean,
     val markedAsAds: Boolean,
     val isFavorite: Boolean,
-    val donut: Donut = Donut(true, 1, "donut", true, "don", "all", 1),
+    val donut: Donut = Donut(),
     val postponedId: Int
 )
 
 object WallService {
     private var allPosts = emptyArray<Post>()
+    private var commentsArray = emptyArray<Comments>()
     private var idPost = 0
+
 
     fun addPosts(post: Post): Post {
         allPosts += post.copy(id = ++idPost)
@@ -88,59 +91,71 @@ object WallService {
         val original2 = post.fromId ?: post
         return post
     }
+
+    fun createComments(comment: Comments): Comments {
+        allPosts.forEachIndexed { index, name ->
+            if (allPosts[index].id == comment.postId)
+                commentsArray += comment
+            return commentsArray.last()
+        }
+        throw PostNotFoundException("Пост ${comment.postId} не найден")
+    }
 }
 
 class Comments(
-    val count: Int,
-    val canPost: Boolean,
-    val groupsCanPost: Boolean,
-    val canClose: Boolean,
-    val canOpen: Boolean
+    val ownerId: Int = 1,
+    val postId: Int = 1,
+    val fromGroup: Int = 3,
+    val message: String = "message",
+    val replyToComment: Int = 3,
+    val attachment: Array<Attachments> = emptyArray(),
+    val stickerId: Int = 4,
+    val guid: String = "guid",
 )
 
 class Copyright(
-    val id: Int,
-    val link: String,
-    val name: String,
+    val id: Int = 1,
+    val link: String = "link",
+    val name: String = "name",
 )
 
 class Likes(
-    val count: Int,
-    val userLikes: Boolean,
-    val canLike: Boolean,
-    val canPublish: Boolean
+    val count: Int = 1,
+    val userLikes: Boolean = true,
+    val canLike: Boolean = true,
+    val canPublish: Boolean = true
 )
 
 class Reposts(
-    val count: Int,
-    val userReposted: Boolean
+    val count: Int = 1,
+    val userReposted: Boolean = true
 )
 
 class Views(
-    val count: Int
+    val count: Int = 1
 )
 
 class PostSource
 
 class Geo(
-    val type: String,
-    val coordinates: String,
-    val place: Place,
+    val type: String = "",
+    val coordinates: String = "",
+    val place: Place = Place(),
 ) {
 
     class Place(
-        val countryId: Int
+        val countryId: Int = 1
     )
 }
 
 class Donut(
-    val isDonut: Boolean,
-    val paidDuration: Int,
-    val Placeholder: String,
-    val canPublishFreeCopy: Boolean,
-    val editMode: String,
-    val all: String,
-    val duration: Int
+    val isDonut: Boolean = true,
+    val paidDuration: Int = 1,
+    val Placeholder: String = "",
+    val canPublishFreeCopy: Boolean = true,
+    val editMode: String = "",
+    val all: String = "",
+    val duration: Int = 1
 )
 
 interface Attachments {
@@ -148,31 +163,31 @@ interface Attachments {
 }
 
 class Audio(
-    val id: Int,
-    val ownerId: Int,
-    val artist: String,
-    val title: String,
-    val duration: Int,
-    val url: String,
-    val lyricsId: Int,
-    val albumId: Int,
-    val genreId: Int,
-    val date: Int,
-    val noSearch: Boolean,
-    val isHq: Boolean
+    val id: Int = 1,
+    val ownerId: Int = 1,
+    val artist: String = "",
+    val title: String = "",
+    val duration: Int = 1,
+    val url: String = "url",
+    val lyricsId: Int = 2,
+    val albumId: Int = 3,
+    val genreId: Int = 4,
+    val date: Int = 5,
+    val noSearch: Boolean = true,
+    val isHq: Boolean = true
 )
 
 class AudioAttachment(
-    val audio: Audio,
+    val audio: Audio = Audio(),
 ) : Attachments {
     override val type: String = "Audio"
 }
 
 class Gift(
-    val id: Int,
-    val thumb256: String,
-    val thumb96: String,
-    val thumb48: String,
+    val id: Int = 1,
+    val thumb256: String = "thumb256",
+    val thumb96: String = "thumb96",
+    val thumb48: String = "thumb48",
 )
 
 class GiftAttachment(
@@ -182,11 +197,11 @@ class GiftAttachment(
 }
 
 class Graffiti(
-    val id: Int,
-    val ownerId: Int,
-    val url: String,
-    val width: Int,
-    val height: Int,
+    val id: Int = 1,
+    val ownerId: Int = 2,
+    val url: String = "url",
+    val width: Int = 3,
+    val height: Int = 4,
 )
 
 class GraffitiAttachment(
@@ -196,15 +211,15 @@ class GraffitiAttachment(
 }
 
 class Photo(
-    val id: Int,
-    val albumId: Int,
-    val ownerId: Int,
-    val userId: Int,
-    val text: String,
-    val date: Int,
-    val sizes: Array<Photo>,
-    val width: Int,
-    val height: Int,
+    val id: Int = 1,
+    val albumId: Int = 2,
+    val ownerId: Int = 3,
+    val userId: Int = 4,
+    val text: String = "text",
+    val date: Int = 6,
+    val sizes: Array<Photo> = emptyArray(),
+    val width: Int = 7,
+    val height: Int = 8,
 )
 
 class PhotoAttachment(
